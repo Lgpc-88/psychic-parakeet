@@ -9,37 +9,6 @@
     <title>录入页面</title>
 </head>
 <body>
-{#<div id="container">#}
-{#    <div id="header">#}
-{#        <img src={% static "images/logo.png" %} width=500px>#}
-{#    </div>#}
-{#    <div id="menu">#}
-{#        <b>菜单</b><br>#}
-{#        <a href="/companyinfo/">新增医院</a>><br>#}
-{#        <a href="/doctorinfo/">新增客户</a>><br>#}
-{#        <a href="/labinfo/">新增实验室</a><br>#}
-{#        <a href="/productinfo/">新增项目录入</a><br>#}
-{#        <a href="/orderdb/">查看明细</a>#}
-{#    </div>#}
-{#    <div id="content">#}
-{#    <form action="/input_post/" method="post">#}
-{#        {% csrf_token %}#}
-{#        寄件日期<input type="date" name="orderdate" required="required"><br>#}
-{#        送检医院<input type="text" name="company" required="required"><br>#}
-{#        送检医生<input type="text" name="doctorname" required="required"><br>#}
-{#        患者姓名<input type="text" name="patientname" required="required"><br>#}
-{#        患者性别:<br>#}
-{#        <input type="radio" name="sex" checked="checked" value='男'>男<br>#}
-{#        <input type="radio" name="sex" value='女'>女<br>#}
-{#        患者年龄<input type="text" name="age" required="required"><br>#}
-{#        检测项目<input type="text" name="productname" required="required"><br>#}
-{#        实收价格<input type="text" name="price" required="required"><br>#}
-{#        折扣<input ootype="text" name="discount"><br>#}
-{#        物流单号<input type="text" name="eno"><br>#}
-{#        <input type="submit">#}
-{#    </form>#}
-{#    </div>#}
-{#</div>#}
 <div>
     <div>
         <table id="ordertb">
@@ -62,7 +31,7 @@
     </tr>
     </form>
             <tr>
-                <td height="50"><button id="btn" onclick="shouwalart()">查询</button></td>
+                <td height="50"><button id="btn">查询</button></td>
             </tr>
         </table>
 </div>
@@ -79,27 +48,4 @@
     </div>
 </div>
 </body>
-<script type="text/javascript">
-    function shouwalart()
-    {
-        var xhttp=new XMLHttpRequest();
-        xhttp.onreadystatechange=function () {
-            if(this.readyState==4&&this.status==200){
-                var mydata=this.responseText
-                var data=JSON.parse(mydata)
-                var html=""
-                for(var i=0;i<data.length;i++){
-                    var result=data[i];
-                    html+="<tr>"
-                    html+="<td><input type='checkbox'></td><td>"+result.sendate+"</td><td>"+result.company+"</td><td>"+result.doctor+"</td><td>"+result.patientname+
-                        "</td><td>"+result.sex+"</td><td>"+result.age+"</td><td>"+result.product+"</td><td>"+result.price+"</td><td>"+result.discount+"</td>"
-                    html+="</tr>"
-                }
-                document.getElementById("ortbody").innerHTML=html;
-            }
-        };
-        xhttp.open("GET","/orderdb/",true)
-        xhttp.send()
-    }
-</script>
 </html>
