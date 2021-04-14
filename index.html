@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-</script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
     <title>录入页面</title>
 </head>
 <body>
@@ -44,5 +45,17 @@
         </table>
     </div>
 </div>
+    <script type="text/javascript">
+    var xhr=new XMLHttpRequest();
+    var s=location.href
+
+    xhr.open('get','http://quan.suning.com/getSysTime.do');
+    xhr.send();
+    xhr.onload=function () {
+        var time=JSON.parse(xhr.responseText);
+        console.log(time)
+        document.getElementById('time').innerHTML=time.sysTime2;
+    }
+</script>
 </body>
 </html>
